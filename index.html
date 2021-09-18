@@ -19,14 +19,25 @@
 
     <section class = "container-fluid p-0 m-4">    
         <div class = "row">
-            <form class = "col-lg-3 mr-3">
+            <form class = "col-12 col-lg-3 mr-3 vh-100">
                 <h2 class="">Search for a city:</h2>
                 <input class="form-control form-control-lg" type="text" placeholder="Pittsburgh">
                 <button type="submit" class="btn btn-primary w-100 mt-2">Search</button>
     
             </form>
-            <div class="row border border-dark col-lg-9">
-                <p>Pepis</p>
+            <div class= "col 12 col-lg-8">
+                <div class = "border border-dark p-2">
+                    <h3>City Name:</h3>
+                    <p>Temp:</p>
+                    <p>Wind:</p>
+                    <p>Humidity:</p>
+                    <p>UV Index:</p>
+                </div>
+                <div>
+                    <!-- This div is where the cards holding the 5-day forecast will go -->
+                    <h3 class = "5-day-forecast pt-3">5-Day Forecast:</h3>
+
+                </div>
             </div>
 
         </div>
