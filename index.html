@@ -21,17 +21,21 @@
         <div class = "row">
             <form class = "col-12 col-lg-3 vh-100">
                 <h2 class="">Search for a city:</h2>
-                <input class="form-control form-control-lg" type="text" placeholder="Pittsburgh">
-                <button type="submit" class="btn btn-primary w-100 mt-2" id = "fetch-button">Search</button>
+                <input class="form-control form-control-lg inputfield" type="text" placeholder="Pittsburgh">
+                <button type="submit" class="btn btn-primary w-100 mt-2 searchBtn" id = "fetch-button">Search</button>
     
             </form>
             <div class= "col 12 col-lg-8">
                 <div class = "border border-dark p-2">
-                    <h3>City Name:</h3>
-                    <p>Temp:</p>
-                    <p>Wind:</p>
-                    <p>Humidity:</p>
-                    <p>UV Index:</p>
+                    <h3 id = "cityNameDate"></h3>
+                    <div>
+                        <ul>
+                            <li id = "temp"></li>
+                            <li id = "wind"></li>
+                            <li id = "humidity"></li>
+                            <li id = "uvIndex"></li>
+                        </ul>
+                    </div>
                 </div>
                 <div>
                     <!-- This div is where the cards holding the 5-day forecast will go -->

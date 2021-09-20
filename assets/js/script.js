@@ -5,9 +5,12 @@ var ulEl = $(".ul");
 var form = $(".input-group");
 
 function getAPI() {
-    var city = $("input").val();
+    var city = $(".inputfield").val();
     var requestURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIkey;
-}
+    console.log(city);
+};
+
+searchButton.on("click", getAPI);
 // GIVEN a weather dashboard with form inputs
 
 // WHEN I search for a city
