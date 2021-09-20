@@ -6,8 +6,16 @@ var form = $(".input-group");
 
 function getAPI() {
     var city = $(".inputfield").val();
-    var requestURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIkey;
-    console.log(city);
+    var requestURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIkey;
+    var cityName = $("#cityDateName");
+
+    fetch(requestURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+        });
 };
 
 searchButton.on("click", getAPI);
