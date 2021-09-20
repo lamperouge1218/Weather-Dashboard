@@ -8,3 +8,7 @@
 h3 {
     font-weight: bold;
 }
+
+li {
+  list-style-type: none;
+}

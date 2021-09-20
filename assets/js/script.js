@@ -7,7 +7,7 @@ var form = $(".input-group");
 function getAPI() {
     var city = $(inputField).val();
     var requestURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIkey;
-    var cityName = $("#cityDateName");
+    // var cityName = $("#cityDateName");
 
     fetch(requestURL)
         .then(function (response) {
@@ -18,7 +18,7 @@ function getAPI() {
         });
 };
 
-// searchButton.on("submit", getAPI);
+searchButton.on("click", getAPI);
 
 
 // GIVEN a weather dashboard with form inputs
