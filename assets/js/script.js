@@ -72,7 +72,7 @@ function getAPI(event) {
                         }
                     });
                     $("#forecast").html(wf);
-                    history();
+                    cityHistory();
                 });
 
 
@@ -80,14 +80,14 @@ function getAPI(event) {
 };
 
 // Passing through the variables from the getAPI function to this one. May have to do this multiple times
-var historyArr = [];
+var cityHistoryArr = [];
 
-function history() {
+function cityHistory() {
     var historyCity = $(inputField).val();
-    historyArr.push("<button>" + historyCity + "</button>");
-    localStorage.setItem("historyArr", JSON.stringify(historyArr));
-    console.log(historyArr);
-    $("#history").html(historyArr);
+    cityHistoryArr.push("<button>" + historyCity + "</button>");
+    localStorage.setItem("historyArr", JSON.stringify(cityHistoryArr));
+    console.log(cityHistoryArr);
+    $("#history").html(cityHistoryArr);
 };
 
 searchButton.on("click", getAPI);
