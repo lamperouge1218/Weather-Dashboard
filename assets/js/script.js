@@ -40,7 +40,7 @@ function getAPI(event) {
                     // console.log(data);
                     $("#uvIndex").text("UV Index: " + data.current.uvi);
                     var uvColor = data.current.uvi;
-                    
+
                     // console.log(uvColor);
                     if (uvColor < 3) {
                         $("#uvIndex").attr("class", "bg-success text-white");
@@ -82,27 +82,20 @@ var cityHistoryArr = [];
 
 function cityHistory() {
     var historyCity = $(inputField).val();
-    cityHistoryArr.push("<button class = 'historyBtn' value ='"+ historyCity+"'>" + historyCity + "</button>");
+    cityHistoryArr.push("<button class = 'historyBtn' value ='" + historyCity + "'>" + historyCity + "</button>");
     localStorage.setItem("historyArr", JSON.stringify(cityHistoryArr));
     console.log(cityHistoryArr);
     $("#history").html(cityHistoryArr);
     var historyBtn = $(".historyBtn").val();
     $(".historyBtn").on("click", historySearch);
-    
+
     function historySearch(event) {
         event.preventDefault();
-        console.log(historyBtn);
+        var historyButton = $(event.target);
+        console.log(historyButton);
+        getAPI(event, historyButton.val());
     };
 };
-
-
-// function historySearch(event) {
-//     event.preventDefault();
-//     console.log("hello world");
-    
-// }
-
-
 
 searchButton.on("click", getAPI);
 
