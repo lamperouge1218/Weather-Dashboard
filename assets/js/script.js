@@ -87,12 +87,11 @@ function cityHistory() {
     console.log(cityHistoryArr);
     $("#history").html(cityHistoryArr);
     var historyBtn = $(".historyBtn").val();
-    $(".historyBtn").on("click", console.log(historyBtn));
+    $(".historyBtn").on("click", historySearch);
     
     function historySearch(event) {
         event.preventDefault();
         console.log(historyBtn);
-        
     };
 };
 
