@@ -1,13 +1,17 @@
 var APIkey = "22699aa722b7a79950a6f5dfaa6a318e";
-var inputField = $(".inputfield");
+var inputField = $("#inputfield");
 var searchButton = $(".searchBtn");
 var ulEl = $(".ul");
 var form = $(".input-group");
 
-function getAPI() {
+function getAPI(event) {
+    event.preventDefault();
     var city = $(inputField).val();
     var requestURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIkey;
-    // var cityName = $("#cityDateName");
+    var cityName = $("#cityName");
+    var today = moment().format("MMM/D/YYYY");
+    console.log(today);
+    $(cityName).text(city + ", " + today);
 
     fetch(requestURL)
         .then(function (response) {
@@ -15,10 +19,50 @@ function getAPI() {
         })
         .then(function (data) {
             console.log(data);
-        });
+            var temp = data.main.temp;
+            var wind = data.wind.speed;
+            var humidity = data.main.humidity;
+
+            $("#temp").text("Temp: " + temp + "°");
+            $("#wind").text("Wind Speed: " + wind + "MPH");
+            $("#humidity").text("Humidity: " + humidity + "%");
+            
+            var lat = data.coord.lat;
+            var lon = data.coord.lon;
+
+            var requestUrlUv = "https://api.openweathermap.org/data/2.5/onecall?&units=imperial&lat=" + lat + "&lon=" + lon + "&appid=" + APIkey;
+            
+            fetch(requestUrlUv)
+                .then (function (response) {
+                    return response.json();
+                })
+                .then (function (data) {
+                    console.log(data);
+                    $("#uvIndex").text("UV Index: " + data.current.uvi);
+                    // var uvColor = data.current.uvi;
+                    var uvColor = 6;
+                    console.log(uvColor);
+                    if (uvColor <= 2) {
+                        $("#uvIndex").attr("class", "bg-success text-white");
+                    } else if (uvColor >= 3 && uvColor <= 5) {
+                        $("#uvIndex").attr("class", "bg-warning text-white");
+                    } else if (uvColor >= 6 && uvColor <= 7) {
+                        $("#uvIndex").attr("class", "bg-orange text-white");
+                    } else if (uvColor >= 8 && uvColor <= 10) {
+                        $("#uvIndex").attr("class", "bg-danger text-white");
+                    } else if (uvColor > 10) {
+                        $("#uvIndex").attr("class", "bg-violet text-white");
+                    }
+                })
+                
+
+            });    
 };
 
+// Passing through the variables from the getAPI function to this one. May have to do this multiple times
+
 searchButton.on("click", getAPI);
+
 
 
 // GIVEN a weather dashboard with form inputs

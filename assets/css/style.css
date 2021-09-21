@@ -12,3 +12,11 @@ h3 {
 li {
   list-style-type: none;
 }
+
+.bg-orange {
+  background-color: #fd7e14 ;
+}
+
+.bg-violet {
+  background-color: #6f42c1;
+}
