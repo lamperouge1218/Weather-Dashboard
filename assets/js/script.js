@@ -42,15 +42,15 @@ function getAPI(event) {
                     var uvColor = data.current.uvi;
                     
                     // console.log(uvColor);
-                    if (uvColor <= 2) {
+                    if (uvColor < 3) {
                         $("#uvIndex").attr("class", "bg-success text-white");
-                    } else if (uvColor >= 3 && uvColor <= 5) {
+                    } else if (uvColor >= 3 && uvColor < 6) {
                         $("#uvIndex").attr("class", "bg-warning text-white");
-                    } else if (uvColor >= 6 && uvColor <= 7) {
+                    } else if (uvColor >= 6 && uvColor < 8) {
                         $("#uvIndex").attr("class", "bg-orange text-white");
-                    } else if (uvColor >= 8 && uvColor <= 10) {
+                    } else if (uvColor >= 8 && uvColor < 11) {
                         $("#uvIndex").attr("class", "bg-danger text-white");
-                    } else if (uvColor > 10) {
+                    } else if (uvColor >= 11) {
                         $("#uvIndex").attr("class", "bg-violet text-white");
                     }
 
@@ -79,7 +79,7 @@ function getAPI(event) {
         });
 };
 
-// Passing through the variables from the getAPI function to this one. May have to do this multiple times
+
 var cityHistoryArr = [];
 
 function cityHistory() {
