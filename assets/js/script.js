@@ -24,7 +24,7 @@ function getAPI(event) {
             var humidity = data.main.humidity;
 
             $("#temp").text("Temp: " + temp + "°");
-            $("#wind").text("Wind Speed: " + wind + "MPH");
+            $("#wind").text("Wind Speed: " + wind + " MPH");
             $("#humidity").text("Humidity: " + humidity + "%");
 
             var lat = data.coord.lat;
@@ -71,11 +71,9 @@ function getAPI(event) {
                             wf += "</p>"; // Closing paragraph tag
                         }
                     });
-                    $("#forecast").html(wf);
+                    $("#forecast").html(wf); // equivalent to .innerHTML from vanilla
                     cityHistory();
                 });
-
-
         });
 };
 
@@ -84,22 +82,32 @@ var cityHistoryArr = [];
 
 function cityHistory() {
     var historyCity = $(inputField).val();
-    cityHistoryArr.push("<button>" + historyCity + "</button>");
+    cityHistoryArr.push("<button class = 'historyBtn' value ='"+ historyCity+"'>" + historyCity + "</button>");
     localStorage.setItem("historyArr", JSON.stringify(cityHistoryArr));
     console.log(cityHistoryArr);
     $("#history").html(cityHistoryArr);
+    var historyBtn = $(".historyBtn").val();
+    $(".historyBtn").on("click", console.log(historyBtn));
+    
+    function historySearch(event) {
+        event.preventDefault();
+        console.log(historyBtn);
+        
+    };
 };
+
+
+// function historySearch(event) {
+//     event.preventDefault();
+//     console.log("hello world");
+    
+// }
+
+
 
 searchButton.on("click", getAPI);
 
-$("#history").on("click", historySearch);
 
-function historySearch(event) {
-    event.preventDefault();
-    var historyButton = $(event.target);
-    console.log(historyButton);
-    getAPI(historyButton.text());
-};
 
 
 
@@ -119,3 +127,16 @@ function historySearch(event) {
 
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
+
+
+
+
+
+// $("#history").on("click", historySearch);
+
+// function historySearch(event) {
+//     event.preventDefault();
+//     var historyButton = $(event.target);
+//     console.log(historyButton);
+//     getAPI(historyButton.text());
+// };
