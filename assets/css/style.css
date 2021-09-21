@@ -20,3 +20,10 @@ li {
 .bg-violet {
   background-color: #6f42c1;
 }
+
+button {
+  width: 100%;
+  background-color: rgb(125, 125, 145);
+  border-radius: 5px;
+  margin-top: 10px;
+}
