@@ -18,7 +18,7 @@ function getAPI(event) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
+            // console.log(data);
             var temp = data.main.temp;
             var wind = data.wind.speed;
             var humidity = data.main.humidity;
@@ -72,6 +72,7 @@ function getAPI(event) {
                         }
                     });
                     $("#forecast").html(wf);
+                    history();
                 });
 
 
@@ -79,8 +80,26 @@ function getAPI(event) {
 };
 
 // Passing through the variables from the getAPI function to this one. May have to do this multiple times
+var historyArr = [];
+
+function history() {
+    var historyCity = $(inputField).val();
+    historyArr.push("<button>" + historyCity + "</button>");
+    localStorage.setItem("historyArr", JSON.stringify(historyArr));
+    console.log(historyArr);
+    $("#history").html(historyArr);
+};
 
 searchButton.on("click", getAPI);
+
+$("#history").on("click", historySearch);
+
+function historySearch(event) {
+    event.preventDefault();
+    var historyButton = $(event.target);
+    console.log(historyButton);
+    getAPI(historyButton.text());
+};
 
 
 
