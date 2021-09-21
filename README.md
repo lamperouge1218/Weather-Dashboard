@@ -14,7 +14,7 @@ and here is a screenshot of the final product's intial page: ![Weather Dashboard
 
 ## Credits
 
-For this project, I collaborated with [Andrew Currie](https://github.com/curriecoder), [Nicole Pingar](https://github.com/curriecoder), as well as with my tutor, Evan Hardek. I also used the sites [W3Schools](https://www.w3schools.com/) and [MDN Web Docs](https://developer.mozilla.org/en-US/) to assist with localStorage. 
+For this project, I collaborated with [Andrew Currie](https://github.com/curriecoder), [Nicole Pingar](https://github.com/curriecoder), [Molly Singmaster] and my tutor, Evan Hardek. I also used the sites [W3Schools](https://www.w3schools.com/), [MDN Web Docs](https://developer.mozilla.org/en-US/), [Open Weather API Docs](https://openweathermap.org/api), and [Bootstrap Docs](https://getbootstrap.com/docs/4.5/getting-started/introduction/) for information and specific documentation regarding the API and the styling for the HTML page.  
 
 ## License 
 
