@@ -10,7 +10,7 @@ function getAPI(event) {
     var requestURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIkey;
     var cityName = $("#cityName");
     var today = moment().format("MMM/D/YYYY");
-    console.log(today);
+    // console.log(today);
     $(cityName).text(city + ", " + today);
 
     fetch(requestURL)
@@ -26,22 +26,22 @@ function getAPI(event) {
             $("#temp").text("Temp: " + temp + "°");
             $("#wind").text("Wind Speed: " + wind + "MPH");
             $("#humidity").text("Humidity: " + humidity + "%");
-            
+
             var lat = data.coord.lat;
             var lon = data.coord.lon;
 
             var requestUrlUv = "https://api.openweathermap.org/data/2.5/onecall?&units=imperial&lat=" + lat + "&lon=" + lon + "&appid=" + APIkey;
-            
+
             fetch(requestUrlUv)
-                .then (function (response) {
+                .then(function (response) {
                     return response.json();
                 })
-                .then (function (data) {
-                    console.log(data);
+                .then(function (data) {
+                    // console.log(data);
                     $("#uvIndex").text("UV Index: " + data.current.uvi);
-                    // var uvColor = data.current.uvi;
-                    var uvColor = 6;
-                    console.log(uvColor);
+                    var uvColor = data.current.uvi;
+                    
+                    // console.log(uvColor);
                     if (uvColor <= 2) {
                         $("#uvIndex").attr("class", "bg-success text-white");
                     } else if (uvColor >= 3 && uvColor <= 5) {
@@ -53,10 +53,29 @@ function getAPI(event) {
                     } else if (uvColor > 10) {
                         $("#uvIndex").attr("class", "bg-violet text-white");
                     }
-                })
-                
 
-            });    
+                    var wf = ""; // start here for refactoring
+                    wf += "<b>" + city + "</b>"; // City (displays once)
+                    $.each(data.daily, function (index, val) {
+                        if (index < 5) {
+                            wf += "<p>"; // Opening paragraph tag
+                            wf += "<b>Day " + (index + 1) + "</b>: "; // Day
+                            wf += "Temp: " + val.temp.day + "&degF | ";
+                            wf += "Wind: " + val.wind_speed + " MPH | ";
+                            wf += "Humidity: " + val.humidity + "%";
+                            wf +=
+                                '<img src= "https://openweathermap.org/img/wn/' + //good link format
+                                val.weather[0].icon +
+                                '@2x.png">'; // Icon
+                            wf += "<span>" + val.weather[0].description + "</span>"; // Description
+                            wf += "</p>"; // Closing paragraph tag
+                        }
+                    });
+                    $("#forecast").html(wf);
+                });
+
+
+        });
 };
 
 // Passing through the variables from the getAPI function to this one. May have to do this multiple times
