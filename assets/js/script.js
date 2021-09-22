@@ -83,15 +83,16 @@ var cityHistoryArr = [];
 function cityHistory() {
     var historyCity = $(inputField).val();
     var buttonText = "<button class = 'historyBtn' value ='" + historyCity + "'>" + historyCity + "</button>";
-    
 
-    if (!cityHistoryArr.includes(buttonText)){
+
+    if (!cityHistoryArr.includes(buttonText)) {
         cityHistoryArr.push(buttonText);
-    localStorage.setItem("historyArr", JSON.stringify(cityHistoryArr));
-    console.log(cityHistoryArr);
-    $("#history").html(cityHistoryArr);
+        localStorage.setItem("historyArr", JSON.stringify(cityHistoryArr));
+        $("#history").html(cityHistoryArr);
 
-    $(".historyBtn").on("click", historySearch);
+        $(".historyBtn").on("click", historySearch);
+    } else {
+        // do nothing
     }
 };
 
@@ -102,9 +103,9 @@ function historySearch(event) {
     getAPI(event);
 };
 
-function init(){
+function init() {
     var storedCities = JSON.parse(localStorage.getItem("historyArr"));
-    if (storedCities !== null){
+    if (storedCities !== null) {
         $("#history").html(storedCities);
         $(".historyBtn").on("click", historySearch);
         cityHistoryArr = JSON.parse(localStorage.getItem("historyArr"));
