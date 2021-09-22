@@ -73,32 +73,47 @@ function getAPI(event) {
                     });
                     $("#forecast").html(wf); // equivalent to .innerHTML from vanilla
                     cityHistory();
+                    $(inputField).val("");
                 });
         });
 };
-
 
 var cityHistoryArr = [];
 
 function cityHistory() {
     var historyCity = $(inputField).val();
-    cityHistoryArr.push("<button class = 'historyBtn' value ='" + historyCity + "'>" + historyCity + "</button>");
+    var buttonText = "<button class = 'historyBtn' value ='" + historyCity + "'>" + historyCity + "</button>";
+    
+
+    if (!cityHistoryArr.includes(buttonText)){
+        cityHistoryArr.push(buttonText);
     localStorage.setItem("historyArr", JSON.stringify(cityHistoryArr));
     console.log(cityHistoryArr);
     $("#history").html(cityHistoryArr);
-    var historyBtn = $(".historyBtn").val();
-    $(".historyBtn").on("click", historySearch);
 
-    function historySearch(event) {
-        event.preventDefault();
-        var historyButton = $(event.target);
-        console.log(historyCity);
-        // getAPI(event, historyButton.val());
+    $(".historyBtn").on("click", historySearch);
+    }
+};
+
+function historySearch(event) {
+    event.preventDefault();
+    var historyButton = $(event.target);
+    $(inputField).val(historyButton.val());
+    getAPI(event);
+};
+
+function init(){
+    var storedCities = JSON.parse(localStorage.getItem("historyArr"));
+    if (storedCities !== null){
+        $("#history").html(storedCities);
+        $(".historyBtn").on("click", historySearch);
+        cityHistoryArr = JSON.parse(localStorage.getItem("historyArr"));
     };
 };
 
 searchButton.on("click", getAPI);
 
+init();
 
 
 
