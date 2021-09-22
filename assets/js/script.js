@@ -92,8 +92,8 @@ function cityHistory() {
     function historySearch(event) {
         event.preventDefault();
         var historyButton = $(event.target);
-        console.log(historyButton);
-        getAPI(event, historyButton.val());
+        console.log(historyCity);
+        // getAPI(event, historyButton.val());
     };
 };
 
